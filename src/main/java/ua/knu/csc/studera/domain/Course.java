@@ -70,4 +70,12 @@ public class Course {
     public List<Student> getStudents() {
         return students;
     }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public List<Lecturer> getLecturers() {
+        return lecturers;
+    }
 }

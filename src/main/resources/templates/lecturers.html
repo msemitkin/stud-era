@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: main-fragment(
+       ~{:: title},
+       ~{:: #content}
+       )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecturers</title>
+</head>
+<body>
+<div id="content">
+    <div th:if="${lecturers.isEmpty()}" class="alert alert-info text-center p-3" role="alert">
+        No lecturers found
+    </div>
+    <table class="table" th:unless="${lecturers.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lecturer : ${lecturers}">
+            <th scope="col" th:text="${lecturer.getId()}">Id</th>
+            <th scope="col" th:text="${lecturer.getFirstName()}">First Name</th>
+            <th scope="col" th:text="${lecturer.getLastName()}">Last Name</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

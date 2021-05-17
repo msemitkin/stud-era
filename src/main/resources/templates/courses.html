@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: main-fragment(
+       ~{:: title},
+       ~{:: #content}
+       )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<div id="content">
+    <div th:if="${courses.isEmpty()}" class="alert alert-info text-center p-3" role="alert">
+        No courses found
+    </div>
+    <table class="table" th:unless="${courses.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Description</th>
+            <th scope="col">Students limit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${courses}">
+            <th scope="col" th:text="${course.getId()}">Id</th>
+            <th scope="col" th:text="${course.getName()}">Name</th>
+            <th scope="col" th:text="${course.getProvider().getName()}">Provider</th>
+            <th scope="col" th:text="${course.getDescription()}">Description</th>
+            <th scope="col" th:text="${course.getStudentsLimit()}">Students limit</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

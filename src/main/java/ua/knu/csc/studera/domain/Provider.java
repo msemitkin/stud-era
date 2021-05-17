@@ -18,10 +18,11 @@ public class Provider {
     @OneToMany(mappedBy = "provider")
     private List<Course> courses;
 
-    public Provider(Integer id, String name, String description) {
+    public Provider(Integer id, String name, String description, List<Course> courses) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.courses = courses;
     }
 
     protected Provider() {

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: main-fragment(
+       ~{:: title},
+       ~{:: #content}
+       )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Providers</title>
+</head>
+<body>
+<div id="content">
+    <div th:if="${providers.isEmpty()}" class="alert alert-info text-center p-3" role="alert">
+        No providers found
+    </div>
+    <table class="table" th:unless="${providers.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="provider : ${providers}">
+            <th scope="col" th:text="${provider.getId()}">Id</th>
+            <th scope="col" th:text="${provider.getName()}">Name</th>
+            <th scope="col" th:text="${provider.getDescription()}">Description</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
