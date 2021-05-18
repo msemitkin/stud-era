@@ -21,6 +21,7 @@
             <th scope="col">Provider</th>
             <th scope="col">Description</th>
             <th scope="col">Students limit</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,12 @@
             <th scope="col" th:text="${course.getProvider().getName()}">Provider</th>
             <th scope="col" th:text="${course.getDescription()}">Description</th>
             <th scope="col" th:text="${course.getStudentsLimit()}">Students limit</th>
+            <th scope="col">
+                <form method="get" action="/students">
+                    <input type="hidden" name="courseId" th:value="${course.getId()}">
+                    <input type="submit" class="btn btn-info" value="Students">
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>
