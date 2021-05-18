@@ -29,6 +29,16 @@ public class Lecturer {
     protected Lecturer() {
     }
 
+    public void addCourse(Course course) {
+        this.courses.add(course);
+        course.getLecturers().add(this);
+    }
+
+    public void removeCourse(Course course) {
+        this.courses.remove(course);
+        course.getLecturers().remove(this);
+    }
+
     public Integer getId() {
         return id;
     }

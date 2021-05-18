@@ -32,10 +32,20 @@
             <th scope="col" th:text="${course.getDescription()}">Description</th>
             <th scope="col" th:text="${course.getStudentsLimit()}">Students limit</th>
             <th scope="col">
-                <form method="get" action="/students">
-                    <input type="hidden" name="courseId" th:value="${course.getId()}">
-                    <input type="submit" class="btn btn-info" value="Students">
-                </form>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item">
+                        <form method="get" action="/students">
+                            <input type="hidden" name="courseId" th:value="${course.getId()}">
+                            <input type="submit" class="btn btn-info" value="Students">
+                        </form>
+                    </li>
+                    <li class="list-group-item">
+                        <form method="get" action="/lecturers" class="d-inline p-2">
+                            <input type="hidden" name="courseId" th:value="${course.getId()}">
+                            <input type="submit" class="btn btn-info" value="Lecturers">
+                        </form>
+                    </li>
+                </ul>
             </th>
         </tr>
         </tbody>

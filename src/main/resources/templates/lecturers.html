@@ -13,12 +13,19 @@
     <div th:if="${lecturers.isEmpty()}" class="alert alert-info text-center p-3" role="alert">
         No lecturers found
     </div>
+    <div th:if="${param.courseId} != null">
+        <form method="get" action="/courses/addLecturer">
+            <input type="hidden" name="courseId" th:value="${param.courseId}">
+            <button type="submit" class="btn btn-info">Add lecturer</button>
+        </form>
+    </div>
     <table class="table" th:unless="${lecturers.isEmpty()}">
         <thead>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +33,13 @@
             <th scope="col" th:text="${lecturer.getId()}">Id</th>
             <th scope="col" th:text="${lecturer.getFirstName()}">First Name</th>
             <th scope="col" th:text="${lecturer.getLastName()}">Last Name</th>
+            <th scope="col" th:if="${param.courseId} != null">
+                <form th:method="delete" action="/courses/deleteLecturer">
+                    <input type="hidden" name="courseId" th:value="${param.courseId}">
+                    <input type="hidden" name="lecturerId" th:value="${lecturer.getId()}">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>
