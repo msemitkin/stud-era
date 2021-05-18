@@ -1,5 +1,6 @@
 package ua.knu.csc.studera.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class Provider {
     @GeneratedValue
     private Integer id;
     private String name;
+    @Column(columnDefinition = "text")
     private String description;
     @OneToMany(mappedBy = "provider")
     private List<Course> courses;

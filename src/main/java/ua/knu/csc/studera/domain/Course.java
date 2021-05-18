@@ -1,5 +1,6 @@
 package ua.knu.csc.studera.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+    @Column(columnDefinition = "text")
     private String description;
     private Integer studentsLimit;
     @ManyToMany
