@@ -50,6 +50,34 @@ public class Course {
         this.lecturers = lecturers;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStudentsLimit(Integer studentsLimit) {
+        this.studentsLimit = studentsLimit;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public void setLecturers(List<Lecturer> lecturers) {
+        this.lecturers = lecturers;
+    }
+
     protected Course() {
     }
 

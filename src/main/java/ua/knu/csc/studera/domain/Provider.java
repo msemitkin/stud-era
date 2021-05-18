@@ -30,6 +30,11 @@ public class Provider {
     protected Provider() {
     }
 
+    public void addCourse(Course course) {
+        this.getCourses().add(course);
+        course.setProvider(this);
+    }
+
     public Integer getId() {
         return id;
     }
