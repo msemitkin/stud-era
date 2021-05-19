@@ -1,7 +1,7 @@
 package ua.knu.csc.studera.web.mapper;
 
 import org.springframework.stereotype.Component;
-import ua.knu.csc.studera.domain.Student;
+import ua.knu.csc.studera.domain.student.Student;
 import ua.knu.csc.studera.web.dto.CreateStudentDTO;
 
 @Component

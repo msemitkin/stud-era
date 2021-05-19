@@ -1,4 +1,8 @@
-package ua.knu.csc.studera.domain;
+package ua.knu.csc.studera.domain.course;
+
+import ua.knu.csc.studera.domain.lecturer.Lecturer;
+import ua.knu.csc.studera.domain.provider.Provider;
+import ua.knu.csc.studera.domain.student.Student;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "course")
-public class Course {
+public class Course implements SimpleCourse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

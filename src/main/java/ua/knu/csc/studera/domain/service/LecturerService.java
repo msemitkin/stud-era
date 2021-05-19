@@ -1,23 +1,37 @@
 package ua.knu.csc.studera.domain.service;
 
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
-import ua.knu.csc.studera.domain.Course;
-import ua.knu.csc.studera.domain.Lecturer;
+import ua.knu.csc.studera.domain.course.Course;
+import ua.knu.csc.studera.domain.lecturer.Lecturer;
+import ua.knu.csc.studera.domain.lecturer.LecturerProjection;
+import ua.knu.csc.studera.domain.lecturer.SimpleLecturer;
 import ua.knu.csc.studera.repository.CourseRepository;
 import ua.knu.csc.studera.repository.LecturerRepository;
+import ua.knu.csc.studera.repository.util.QueryLoader;
 import ua.knu.csc.studera.web.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class LecturerService {
 
+    private final NamedParameterJdbcTemplate jdbcTemplate;
+    private final QueryLoader queryLoader;
     private final LecturerRepository lecturerRepository;
     private final CourseRepository courseRepository;
 
-    public LecturerService(LecturerRepository lecturerRepository, CourseRepository courseRepository) {
+    public LecturerService(
+        NamedParameterJdbcTemplate jdbcTemplate,
+        QueryLoader queryLoader,
+        LecturerRepository lecturerRepository,
+        CourseRepository courseRepository
+    ) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.queryLoader = queryLoader;
         this.lecturerRepository = lecturerRepository;
         this.courseRepository = courseRepository;
     }
@@ -80,6 +94,23 @@ public class LecturerService {
             lecturer.removeCourse(course);
         }
         lecturerRepository.delete(lecturer);
+    }
+
+    public List<SimpleLecturer> getLecturersAttachedToMoreCoursesThanGiven(
+        int providerId, int courseNumber
+    ) {
+        String fileName = "find-lecturers-attached-to-more-provider-courses-than-x.sql";
+        String query = queryLoader.getQueryAsText(fileName);
+        return jdbcTemplate.query(
+            query,
+            Map.of("id", providerId, "count", courseNumber),
+            (rs, rowNum) ->
+                new LecturerProjection(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name")
+                )
+        );
     }
 
 

@@ -1,4 +1,6 @@
-package ua.knu.csc.studera.domain;
+package ua.knu.csc.studera.domain.provider;
+
+import ua.knu.csc.studera.domain.course.Course;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "provider")
-public class Provider {
+public class Provider implements SimpleProvider {
     @Id
     @GeneratedValue
     private Integer id;

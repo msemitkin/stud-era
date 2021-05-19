@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ua.knu.csc.studera.domain.Course;
-import ua.knu.csc.studera.domain.Lecturer;
+import ua.knu.csc.studera.domain.course.Course;
+import ua.knu.csc.studera.domain.lecturer.Lecturer;
 
 @Repository
 public interface LecturerRepository extends JpaRepository<Lecturer, Integer> {

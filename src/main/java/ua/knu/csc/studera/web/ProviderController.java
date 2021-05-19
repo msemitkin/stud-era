@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.knu.csc.studera.domain.Provider;
+import ua.knu.csc.studera.domain.provider.Provider;
 import ua.knu.csc.studera.domain.service.ProviderService;
 import ua.knu.csc.studera.web.dto.CreateProviderDTO;
 import ua.knu.csc.studera.web.mapper.ProviderMapper;

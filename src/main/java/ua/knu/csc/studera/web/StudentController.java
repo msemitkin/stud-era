@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ua.knu.csc.studera.domain.Student;
+import ua.knu.csc.studera.domain.student.Student;
 import ua.knu.csc.studera.domain.service.StudentService;
 import ua.knu.csc.studera.web.dto.CreateStudentDTO;
 import ua.knu.csc.studera.web.mapper.StudentMapper;
