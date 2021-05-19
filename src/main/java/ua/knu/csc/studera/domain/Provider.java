@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "provider")
@@ -18,9 +18,9 @@ public class Provider {
     @Column(columnDefinition = "text")
     private String description;
     @OneToMany(mappedBy = "provider")
-    private List<Course> courses;
+    private Set<Course> courses;
 
-    public Provider(Integer id, String name, String description, List<Course> courses) {
+    public Provider(Integer id, String name, String description, Set<Course> courses) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -47,7 +47,7 @@ public class Provider {
         return description;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 }

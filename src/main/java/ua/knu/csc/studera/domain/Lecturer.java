@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "lecturer")
@@ -17,9 +17,9 @@ public class Lecturer {
     private String firstName;
     private String lastName;
     @ManyToMany
-    private List<Course> courses;
+    private Set<Course> courses;
 
-    public Lecturer(Integer id, String firstName, String lastName, List<Course> courses) {
+    public Lecturer(Integer id, String firstName, String lastName, Set<Course> courses) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,7 +51,7 @@ public class Lecturer {
         return lastName;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 }

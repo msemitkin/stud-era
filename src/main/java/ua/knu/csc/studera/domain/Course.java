@@ -10,7 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -28,7 +28,7 @@ public class Course {
         name = "student_course",
         joinColumns = @JoinColumn(name = "course_id"),
         inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private List<Student> students;
+    private Set<Student> students;
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
@@ -37,10 +37,10 @@ public class Course {
         name = "course_lecturer",
         joinColumns = @JoinColumn(name = "course_id"),
         inverseJoinColumns = @JoinColumn(name = "lecturer_id"))
-    private List<Lecturer> lecturers;
+    private Set<Lecturer> lecturers;
 
     public Course(Integer id, String name, String description, Integer studentsLimit,
-                  List<Student> students, Provider provider, List<Lecturer> lecturers) {
+                  Set<Student> students, Provider provider, Set<Lecturer> lecturers) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -66,7 +66,7 @@ public class Course {
         this.studentsLimit = studentsLimit;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 
@@ -74,7 +74,7 @@ public class Course {
         this.provider = provider;
     }
 
-    public void setLecturers(List<Lecturer> lecturers) {
+    public void setLecturers(Set<Lecturer> lecturers) {
         this.lecturers = lecturers;
     }
 
@@ -97,7 +97,7 @@ public class Course {
         return studentsLimit;
     }
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
@@ -105,7 +105,7 @@ public class Course {
         return provider;
     }
 
-    public List<Lecturer> getLecturers() {
+    public Set<Lecturer> getLecturers() {
         return lecturers;
     }
 }
