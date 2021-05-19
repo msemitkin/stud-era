@@ -40,6 +40,12 @@
                     <input type="submit" class="btn btn-danger" value="Delete">
                 </form>
             </th>
+            <th scope="col" th:unless="${param.courseId} != null">
+                <form th:method="delete" action="/students">
+                    <input type="hidden" name="id" th:value="${student.getId()}">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </th>
         </tr>
         </tbody>
     </table>

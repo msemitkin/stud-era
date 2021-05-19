@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.knu.csc.studera.domain.Provider;
-import ua.knu.csc.studera.repository.ProviderRepository;
+import ua.knu.csc.studera.domain.service.ProviderService;
 import ua.knu.csc.studera.web.dto.CreateProviderDTO;
 import ua.knu.csc.studera.web.mapper.ProviderMapper;
 
@@ -17,21 +17,17 @@ import java.util.List;
 @Controller
 public class ProviderController {
 
-    private final ProviderRepository providerRepository;
+    private final ProviderService providerService;
     private final ProviderMapper providerMapper;
 
-    public ProviderController(
-        ProviderRepository providerRepository,
-        ProviderMapper providerMapper
-    ) {
-        this.providerRepository = providerRepository;
+    public ProviderController(ProviderService providerService, ProviderMapper providerMapper) {
+        this.providerService = providerService;
         this.providerMapper = providerMapper;
     }
 
-
     @GetMapping("/providers")
     public String getAll(Model model) {
-        List<Provider> providers = providerRepository.findAll();
+        List<Provider> providers = providerService.findAll();
         model.addAttribute("providers", providers);
         return "providers";
     }
@@ -50,7 +46,7 @@ public class ProviderController {
         if (bindingResult.hasErrors()) {
             return "forms/provider-form";
         }
-        providerRepository.save(providerMapper.toEntity(providerDTO));
+        providerService.save(providerMapper.toEntity(providerDTO));
         return "redirect:/providers";
     }
 }
