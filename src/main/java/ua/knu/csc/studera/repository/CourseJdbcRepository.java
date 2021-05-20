@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ua.knu.csc.studera.domain.course.CourseProjection;
 import ua.knu.csc.studera.domain.course.SimpleCourse;
+import ua.knu.csc.studera.domain.provider.ProviderProjection;
 import ua.knu.csc.studera.repository.util.QueryLoader;
 
 import java.util.List;
@@ -18,7 +19,12 @@ public class CourseJdbcRepository {
             rs.getInt("id"),
             rs.getString("name"),
             rs.getString("description"),
-            rs.getInt("students_limit")
+            rs.getInt("students_limit"),
+            new ProviderProjection(
+                rs.getInt("provider_id"),
+                rs.getString("provider_name"),
+                rs.getString("provider_description")
+            )
         );
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final QueryLoader queryLoader;

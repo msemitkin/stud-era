@@ -1,5 +1,7 @@
 package ua.knu.csc.studera.domain.course;
 
+import ua.knu.csc.studera.domain.provider.SimpleProvider;
+
 public interface SimpleCourse {
 
     Integer getId();
@@ -9,4 +11,6 @@ public interface SimpleCourse {
     String getDescription();
 
     Integer getStudentsLimit();
+
+    SimpleProvider getProvider();
 }

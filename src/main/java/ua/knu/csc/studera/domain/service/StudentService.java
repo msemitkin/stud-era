@@ -96,10 +96,6 @@ public class StudentService {
         studentRepository.delete(student);
     }
 
-    public List<SimpleStudent> findStudentsThatAppliedAnyCourseFromProvider(int providerId) {
-        return studentJdbcRepository.findStudentsThatAppliedAnyCourseFromProvider(providerId);
-    }
-
     public List<SimpleStudent> findStudentsThatEnrolledAtLeastAllCoursesThatGivenStudent(int studentId) {
         return studentJdbcRepository.findStudentsThatEnrolledAtLeastAllCoursesThatGivenStudent(studentId);
     }

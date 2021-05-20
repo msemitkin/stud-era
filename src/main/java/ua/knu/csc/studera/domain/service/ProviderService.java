@@ -5,10 +5,12 @@ import ua.knu.csc.studera.domain.course.Course;
 import ua.knu.csc.studera.domain.course.SimpleCourse;
 import ua.knu.csc.studera.domain.lecturer.SimpleLecturer;
 import ua.knu.csc.studera.domain.provider.Provider;
+import ua.knu.csc.studera.domain.provider.SimpleProvider;
 import ua.knu.csc.studera.domain.student.SimpleStudent;
 import ua.knu.csc.studera.repository.CourseJdbcRepository;
 import ua.knu.csc.studera.repository.CourseRepository;
 import ua.knu.csc.studera.repository.LecturerJdbcRepository;
+import ua.knu.csc.studera.repository.ProviderJdbcRepository;
 import ua.knu.csc.studera.repository.ProviderRepository;
 import ua.knu.csc.studera.repository.StudentJdbcRepository;
 
@@ -22,19 +24,22 @@ public class ProviderService {
     private final LecturerJdbcRepository lecturerJdbcRepository;
     private final StudentJdbcRepository studentJdbcRepository;
     private final CourseJdbcRepository courseJdbcRepository;
+    private final ProviderJdbcRepository providerJdbcRepository;
 
     public ProviderService(
         ProviderRepository providerRepository,
         CourseRepository courseRepository,
         LecturerJdbcRepository lecturerJdbcRepository,
         StudentJdbcRepository studentJdbcRepository,
-        CourseJdbcRepository courseJdbcRepository
+        CourseJdbcRepository courseJdbcRepository,
+        ProviderJdbcRepository providerJdbcRepository
     ) {
         this.providerRepository = providerRepository;
         this.courseRepository = courseRepository;
         this.lecturerJdbcRepository = lecturerJdbcRepository;
         this.studentJdbcRepository = studentJdbcRepository;
         this.courseJdbcRepository = courseJdbcRepository;
+        this.providerJdbcRepository = providerJdbcRepository;
     }
 
     public List<Provider> findAll() {
@@ -59,8 +64,8 @@ public class ProviderService {
         return courseJdbcRepository.findCoursesWithNoFreePlaces(providerId);
     }
 
-    public List<SimpleLecturer> findProvidersOnWhoseCoursesGivenLecturerWorks(int lecturerId) {
-        return lecturerJdbcRepository.findProvidersOnWhoseCoursesGivenLecturerWorks(lecturerId);
+    public List<SimpleProvider> findProvidersOnWhoseCoursesGivenLecturerWorks(int lecturerId) {
+        return providerJdbcRepository.findProvidersOnWhoseCoursesGivenLecturerWorks(lecturerId);
     }
 
     public List<SimpleStudent> findStudentsThatEnrolledAllCoursesOfProvider(int providerId) {
@@ -69,6 +74,10 @@ public class ProviderService {
 
     public List<SimpleLecturer> findLecturersThatAreNotAttachedToAnyCourseOfProvider(int providerId) {
         return lecturerJdbcRepository.findLecturersThatAreNotAttachedToAnyCourseOfProvider(providerId);
+    }
+
+    public List<SimpleStudent> findStudentsThatAppliedAnyCourseFromProvider(int providerId) {
+        return studentJdbcRepository.findStudentsThatAppliedAnyCourseFromProvider(providerId);
     }
 
 }

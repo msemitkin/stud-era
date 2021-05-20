@@ -41,11 +41,4 @@ public class LecturerJdbcRepository {
         String query = queryLoader.getQueryAsText(fileName);
         return jdbcTemplate.query(query, Map.of("id", providerId), SIMPLE_LECTURER_ROW_MAPPER);
     }
-
-    public List<SimpleLecturer> findProvidersOnWhoseCoursesGivenLecturerWorks(int lecturerId) {
-        String fileName = "find-providers-where-given-lecturer-works.sql";
-        String query = queryLoader.getQueryAsText(fileName);
-        return jdbcTemplate.query(query, Map.of("id", lecturerId), SIMPLE_LECTURER_ROW_MAPPER);
-    }
-
 }

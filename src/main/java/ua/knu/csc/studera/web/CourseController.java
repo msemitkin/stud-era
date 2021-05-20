@@ -33,7 +33,7 @@ public class CourseController {
         this.courseMapper = courseMapper;
     }
 
-    @GetMapping("courses")
+    @GetMapping("/courses")
     public String getAll(Model model) {
         List<Course> courses = courseService.findAll();
         model.addAttribute("courses", courses);
