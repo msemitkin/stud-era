@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity
 @Table(name = "student")
 public class Student implements SimpleStudent {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,11 +21,10 @@ public class Student implements SimpleStudent {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @ManyToMany
+    @ManyToMany(mappedBy = "students")
     private Set<Course> courses;
 
-    public Student(Integer id, String firstName, String lastName,
-                   Set<Course> courses) {
+    public Student(Integer id, String firstName, String lastName, Set<Course> courses) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

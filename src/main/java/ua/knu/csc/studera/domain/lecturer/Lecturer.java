@@ -21,7 +21,7 @@ public class Lecturer implements SimpleLecturer {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @ManyToMany
+    @ManyToMany(mappedBy = "lecturers")
     private Set<Course> courses;
 
     public Lecturer(Integer id, String firstName, String lastName, Set<Course> courses) {
