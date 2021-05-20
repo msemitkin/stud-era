@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: main-fragment(
+       ~{:: title},
+       ~{:: #content}
+       )}">
+<head>
+    <meta charset="UTF-8">
+    <title>StudEra</title>
+</head>
+<body>
+<div id="content">
+    <p class="h4">Find students who enrolled at least all courses of given student:</p>
+    <form class="form-horizontal" action="/students/enrolled-all-courses-as-given-student" method="get">
+        <label class="control-label col-sm-4" for="student">Student:</label>
+        <div class="col-sm-10">
+            <select name="studentId"
+                    id="student"
+                    class="custom-select">
+                <option th:each="student : ${students}"
+                        th:text="${student.getFirstName() + ' ' + student.getLastName()}"
+                        th:value="${student.getId()}">
+                </option>
+            </select>
+        </div>
+        <input type="hidden" name="courseId" th:value="${param.courseId}">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

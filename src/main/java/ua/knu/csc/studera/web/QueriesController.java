@@ -8,6 +8,7 @@ import ua.knu.csc.studera.domain.lecturer.SimpleLecturer;
 import ua.knu.csc.studera.domain.provider.SimpleProvider;
 import ua.knu.csc.studera.domain.service.LecturerService;
 import ua.knu.csc.studera.domain.service.ProviderService;
+import ua.knu.csc.studera.domain.service.StudentService;
 import ua.knu.csc.studera.domain.student.SimpleStudent;
 
 import java.util.List;
@@ -17,10 +18,16 @@ public class QueriesController {
 
     private final ProviderService providerService;
     private final LecturerService lecturerService;
+    private final StudentService studentService;
 
-    public QueriesController(ProviderService providerService, LecturerService lecturerService) {
+    public QueriesController(
+        ProviderService providerService,
+        LecturerService lecturerService,
+        StudentService studentService
+    ) {
         this.providerService = providerService;
         this.lecturerService = lecturerService;
+        this.studentService = studentService;
     }
 
     @GetMapping("/queries")
@@ -94,6 +101,73 @@ public class QueriesController {
             .findProvidersOnWhoseCoursesGivenLecturerWorks(lecturerId);
         model.addAttribute("providers", providers);
         return "providers";
+    }
+
+    @GetMapping("/students/enrolled-all-courses-as-given-student/form")
+    public String queryForm5(Model model) {
+        model.addAttribute("students", studentService.findAll());
+        return "queries/studets-who-enrolled-all-courses-as-given-student";
+    }
+
+    @GetMapping("/students/enrolled-all-courses-as-given-student")
+    public String getStudentsWhoEnrolledAllCoursesOfGivenStudent(
+        @RequestParam("studentId") Integer studentId,
+        Model model
+    ) {
+        List<SimpleStudent> students = studentService
+            .findStudentsThatEnrolledAtLeastAllCoursesThatGivenStudent(studentId);
+        model.addAttribute("students", students);
+        return "students";
+    }
+
+    @GetMapping("/lecturers/not-attached-to-any-course-of-provider/form")
+    public String queryForm6(Model model) {
+        model.addAttribute("providers", providerService.findAll());
+        return "queries/lecturers-not-attached-to-any-course-of-provider";
+    }
+
+    @GetMapping("/lecturers/not-attached-to-any-course-of-provider")
+    public String getLecturersNotAttachedToAnyCourseOfProvider(
+        @RequestParam("providerId") Integer providerId,
+        Model model
+    ) {
+        List<SimpleLecturer> lecturers = providerService
+            .findLecturersThatAreNotAttachedToAnyCourseOfProvider(providerId);
+        model.addAttribute("lecturers", lecturers);
+        return "lecturers";
+    }
+
+    @GetMapping("/students/enrolled-all-courses-of-provider/form")
+    public String queryForm7(Model model) {
+        model.addAttribute("providers", providerService.findAll());
+        return "queries/students-who-enrolled-all-courses-of-provider";
+    }
+
+    @GetMapping("/students/enrolled-all-courses-of-provider")
+    public String getStudentsWhoEnrolledAllCoursesOfGivenProvider(
+        @RequestParam("providerId") Integer providerId,
+        Model model
+    ) {
+        List<SimpleStudent> students = providerService
+            .findStudentsThatEnrolledAllCoursesOfProvider(providerId);
+        model.addAttribute("students", students);
+        return "students";
+    }
+
+    @GetMapping("/courses/average-course-capacity/form")
+    public String queryForm8(Model model) {
+        model.addAttribute("providers", providerService.findAll());
+        return "queries/average-course-capacity";
+    }
+
+    @GetMapping("/courses/average-course-capacity")
+    public String getAverageCourseCapacity(
+        @RequestParam("providerId") Integer providerId,
+        Model model
+    ) {
+        Double averageCourseCapacity = providerService.findAverageCourseCapacity(providerId);
+        model.addAttribute("result", averageCourseCapacity);
+        return "queries/double-result";
     }
 
 }
