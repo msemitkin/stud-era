@@ -84,7 +84,7 @@ public class LecturerService {
     public void delete(int lecturerId) {
         Lecturer lecturer = lecturerRepository.findById(lecturerId).orElseThrow(() ->
             new EntityNotFoundException("Lecturer with given id does not exist"));
-        for (Course course : lecturer.getCourses()) {
+        for (Course course : List.copyOf(lecturer.getCourses())) {
             lecturer.removeCourse(course);
         }
         lecturerRepository.delete(lecturer);

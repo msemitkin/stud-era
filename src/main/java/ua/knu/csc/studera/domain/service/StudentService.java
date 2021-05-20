@@ -90,7 +90,7 @@ public class StudentService {
     public void delete(int studentId) {
         Student student = studentRepository.findById(studentId).orElseThrow(() ->
             new EntityNotFoundException("Student with given id does not exist"));
-        for (Course course : student.getCourses()) {
+        for (Course course : List.copyOf(student.getCourses())) {
             student.removeCourse(course);
         }
         studentRepository.delete(student);
