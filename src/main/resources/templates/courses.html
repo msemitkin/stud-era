@@ -21,7 +21,7 @@
             <th scope="col">Provider</th>
             <th scope="col">Description</th>
             <th scope="col">Students limit</th>
-            <th scope="col">Action</th>
+            <th scope="col" style="width: 21%">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -32,20 +32,14 @@
             <th scope="col" th:text="${course.getDescription()}">Description</th>
             <th scope="col" th:text="${course.getStudentsLimit()}">Students limit</th>
             <th scope="col">
-                <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item">
-                        <form method="get" action="/students">
-                            <input type="hidden" name="courseId" th:value="${course.getId()}">
-                            <input type="submit" class="btn btn-info" value="Students">
-                        </form>
-                    </li>
-                    <li class="list-group-item">
-                        <form method="get" action="/lecturers" class="d-inline p-2">
-                            <input type="hidden" name="courseId" th:value="${course.getId()}">
-                            <input type="submit" class="btn btn-info" value="Lecturers">
-                        </form>
-                    </li>
-                </ul>
+                <form method="get" action="/students" class="d-inline-block">
+                    <input type="hidden" name="courseId" th:value="${course.getId()}">
+                    <input type="submit" class="btn btn-info" value="Students">
+                </form>
+                <form method="get" action="/lecturers" class="d-inline-block">
+                    <input type="hidden" name="courseId" th:value="${course.getId()}">
+                    <input type="submit" class="btn btn-info" value="Lecturers">
+                </form>
             </th>
         </tr>
         </tbody>
