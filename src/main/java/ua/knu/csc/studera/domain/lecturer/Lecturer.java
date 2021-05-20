@@ -2,6 +2,7 @@ package ua.knu.csc.studera.domain.lecturer;
 
 import ua.knu.csc.studera.domain.course.Course;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,11 @@ import java.util.Set;
 @Table(name = "lecturer")
 public class Lecturer implements SimpleLecturer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
     @ManyToMany
     private Set<Course> courses;

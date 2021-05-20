@@ -21,11 +21,13 @@ import java.util.Set;
 public class Course implements SimpleCourse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String name;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", nullable = false)
     private String description;
+    @Column(nullable = false)
     private Integer studentsLimit;
     @ManyToMany
     @JoinTable(
@@ -33,7 +35,7 @@ public class Course implements SimpleCourse {
         joinColumns = @JoinColumn(name = "course_id"),
         inverseJoinColumns = @JoinColumn(name = "student_id"))
     private Set<Student> students;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "provider_id")
     private Provider provider;
     @ManyToMany

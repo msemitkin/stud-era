@@ -5,6 +5,7 @@ import ua.knu.csc.studera.domain.course.Course;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,10 +15,11 @@ import java.util.Set;
 @Table(name = "provider")
 public class Provider implements SimpleProvider {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String name;
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", nullable = false)
     private String description;
     @OneToMany(mappedBy = "provider")
     private Set<Course> courses;
