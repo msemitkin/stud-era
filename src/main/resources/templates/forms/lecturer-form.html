@@ -17,6 +17,7 @@
         }
     </style>
     <form class="form-horizontal" th:object="${lecturer}" action="/lecturers/save" method="post">
+        <p class="h4 col-sm-10">Add lecturer</p>
         <div class="alert alert-danger col-sm-10" role="alert" th:if="${#fields.hasErrors('firstName')}">
             <p th:each="error: ${#fields.errors('firstName')}"
                th:text="${error}"

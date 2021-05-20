@@ -17,6 +17,7 @@
         }
     </style>
     <form class="form-horizontal" th:object="${provider}" action="/providers/save" method="post">
+        <p class="h4 col-sm-10">Add provider</p>
         <div class="alert alert-danger col-sm-10" role="alert" th:if="${#fields.hasErrors('name')}">
             <p th:each="error: ${#fields.errors('name')}"
                th:text="${error}"
